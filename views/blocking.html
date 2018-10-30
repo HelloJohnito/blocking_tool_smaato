@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<link rel="stylesheet" type="text/css" href="blocking.css" />
+  <head>
+    <meta charset="utf-8">
+    <title>Blocking Tool</title>
+  </head>
+  <body>
+    <header>
+      <img class="logo" src="https://www.smaato.com/wp-content/themes/smaato/images/smaato-logo.png" alt="">
+    </header>
+
+    <div class="auth_container">
+      <h2 for="">Authentication</h2>
+      <div class="auth_inner_container">
+        <h4>Client Id</h4>
+        <input id="client_id" type="text" value="" placeholder="Client Id">
+        <h4>Client Secret</h4>
+        <input id="client_secret" type="text" value="" placeholder="Client Secret">
+        <button id="connect_button" type="button" name="button">Connect</button>
+
+        <div id="loader_success_container_1"></div>
+
+      </div>
+    </div>
+
+    <div class="application_container">
+      <h2 id="h2_auth">Application Id</h2>
+      <input id="application_id" type="text" name="" value="120176118" placeholder="Application Id">
+    </div>
+
+
+    <div class="category_container">
+      <h2 class="category_title">Category Block</h2>
+      <div class="category_box_container">
+        <select id="category_box_left" class="category_box" size="10">
+        </select>
+        <div class="button_container_outer">
+          <div class="button_top_container">
+            <button id="add_category_button" type="button" name="button"> -> </button>
+            <button id="subtract_category_button" type="button" name="button"> <- </button>
+            <button id="reset_category_button">reset</button>
+          </div>
+        </div>
+        <select id="category_box_right" class="category_box" size="10">
+        </select>
+      </div>
+    </div>
+
+    <div class="domain_container">
+      <h2>Domain List</h2>
+      <textarea id="domain_box" name="name" rows="8" cols="50" placeholder="Insert domain list..."></textarea>
+    </div>
+
+    <button id="submit_button">submit</button>
+    <div id="loader_success_container_2"></div>
+
+    <div class="footer"></div>
+
+  </body>
+  <script src="../models/data.js"></script>
+  <script src="../controllers/soma_api.js"></script>
+  <script src="../controllers/auth_initialize.js"></script>
+  <script src="../controllers/blocking_logic.js"></script>
+  <script src="../controllers/submit.js"></script>
+  <script src="../main.js"></script>
+</html>
