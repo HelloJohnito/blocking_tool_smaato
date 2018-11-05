@@ -1,4 +1,6 @@
  // SOMA API
+var START_POSITION_LINE_ITEMS = 0;
+
 
  // AUTH
  function getAuthToken(client_id, client_secret, performTask){
@@ -11,7 +13,6 @@
    var callback = function() {
      if(this.readyState == 4 && this.status == 200) {
        ACCESS_TOKEN = JSON.parse(this.responseText).access_token;
-       console.log(ACCESS_TOKEN);
        performTask(getAllLineItems);
      }
    }
@@ -32,11 +33,7 @@ function getAllAdspaces(performTask){
     if(this.readyState == 4 && this.status == 200){
       SPX_DATA.adspaces = JSON.parse(this.responseText);
       console.log(SPX_DATA.adspaces);
-      performTask(function(){
-        console.log("success");
-        clearLoadSuccessContainer("loader_success_container_1");
-        addElement("loader_success_container_1", "success_note", "Success");
-      });
+      performTask(function(){console.log("success");});
     }
   }
   requestSoma(request_object, callback);
@@ -48,15 +45,24 @@ function getAllAdspaces(performTask){
 function getAllLineItems(performTask){
   var request_object = {
     "headers": [["Authorization", `Bearer ${ACCESS_TOKEN}`]],
-    "url" : 'https://spx.smaato.com/publisherportal/api/smx/v1/line-items',
+    "url" : 'https://spx.smaato.com/publisherportal/api/smx/v1/line-items?max-result=1000&start-position=' + START_POSITION_LINE_ITEMS.toString(),
     "params": null,
     "requestType" : "GET"
   };
   var callback = function(){
     if(this.readyState == 4 && this.status == 200){
-      SPX_DATA.lineitems = JSON.parse(this.responseText);
+      var lineitems_result = JSON.parse(this.responseText);
+      SPX_DATA.lineitems = SPX_DATA.lineitems.concat(lineitems_result);
       console.log(SPX_DATA.lineitems);
-      performTask();
+      if(lineitems_result.length === 1000){
+        START_POSITION_LINE_ITEMS += 1000;
+        getAllLineItems(function(){console.log("success");});
+      }
+      else {
+        clearLoadSuccessContainer("loader_success_container_1");
+        addElement("loader_success_container_1", "success_note", "Success");
+        performTask();
+      }
     }
   }
   requestSoma(request_object, callback);

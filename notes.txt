@@ -1,8 +1,3 @@
 
-Add feature to load more line items over 1000
-- https://spx.smaato.com/publisherportal/api/smx/v1/line-items?max-result=1000&start-position=' + num.toString();
-
-Loading spinner
-
 // handle the error when nothing is selected: "can't call text() of undefined"
 inside categoryArrowButtonPressed(operation)

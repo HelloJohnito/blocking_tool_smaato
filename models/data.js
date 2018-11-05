@@ -1,11 +1,11 @@
 
 // Testing_application_id = 120176118
 
-var ACCESS_TOKEN = "SgePsu1wCsMdVQzMvFUWcoV4LuM2oK";
+var ACCESS_TOKEN = "";
 
 var SPX_DATA = {
-  adspaces: null,
-  lineitems: null
+  adspaces: [],
+  lineitems: []
 }
 
 var PARENT_CATEGORIES = [
