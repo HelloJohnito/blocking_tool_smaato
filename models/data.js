@@ -1,7 +1,7 @@
 
 // Testing_application_id = 120176118
 
-var ACCESS_TOKEN = "QiHMQHprjqDd0YZU5af19bqnq3ZG6H";
+var ACCESS_TOKEN = "SgePsu1wCsMdVQzMvFUWcoV4LuM2oK";
 
 var SPX_DATA = {
   adspaces: null,

@@ -14,11 +14,12 @@ function ErrorHandleCheckInput(){
 
 function submitConnectAccount(){
   clearLoadSuccessContainer("loader_success_container_1");
-  ErrorHandleCheckInput();
+  // ErrorHandleCheckInput();
   addElement("loader_success_container_1", "loader", "");
-  getAuthToken(CLIENT_ID_LABEL.value, CLIENT_SECRET_LABEL.value, getAllAdspaces);
-  // getAllAdspaces(getAllLineItems);
+  // getAuthToken(CLIENT_ID_LABEL.value, CLIENT_SECRET_LABEL.value, getAllAdspaces);
+  getAllAdspaces(getAllLineItems);
 }
+
 
 function clearLoadSuccessContainer(element_id){
   var container = document.getElementById(element_id);

@@ -1,5 +1,28 @@
 var APPLICATION_ID = document.getElementById("application_id");
 var SUBMIT_BUTTON = document.getElementById("submit_button").addEventListener("click", submit);
+var CLEAR_ALL = document.getElementById("clear_all_button").addEventListener("click", clearAll);
+var FINAL_CALL_BACK_COUNT;
+
+function clearAll(){
+  FINAL_CALL_BACK_COUNT = 0;
+  clearLoadSuccessContainer("loader_success_container_3");
+  ErroHandleCheckConnection();
+  addElement("loader_success_container_3", "loader", "");
+
+  var adspace_ids_in_application = parseDataForAdspace();
+  var lineitems_in_application = selectLineItemsWithAdspace(adspace_ids_in_application);
+
+  lineitems_in_application.forEach(function(lineitem){
+    lineitem.smxSettings.categories = null;
+    lineitem.smxSettings.domains = null;
+    performTask = function(){
+      FINAL_CALL_BACK_COUNT++;
+      finalCallBack(FINAL_CALL_BACK_COUNT, lineitems_in_application.size, 3);
+      console.log("success for" + lineitem.name);
+    };
+    putLineItem(lineitem, performTask);
+  });
+}
 
 
 function ErroHandleCheckConnection(){
@@ -10,6 +33,14 @@ function ErroHandleCheckConnection(){
   else if(!SPX_DATA["adspaces"] || !SPX_DATA["lineitems"]){
     alert("ERROR: There are no adspaces and/or line items for this account. If there are, reconnect to the account and try again.");
     throw new Error("There are no adspaces and/or line items for this account. If there are, reconnecting to the account and try again.");
+  }
+}
+
+
+function finalCallBack(current_count, lineitem_count, num){
+  if(current_count === lineitem_count){
+    clearLoadSuccessContainer("loader_success_container_" + num.toString());
+    addElement("loader_success_container_" + num.toString(), "success_note", "Success");
   }
 }
 
@@ -107,14 +138,6 @@ function setCategoryValues(){
 }
 
 
-function finalCallBack(current_count, lineitem_count){
-  if(current_count === lineitem_count){
-    clearLoadSuccessContainer("loader_success_container_2");
-    addElement("loader_success_container_2", "success_note", "Success");
-  }
-}
-
-var FINAL_CALL_BACK_COUNT = 0;
 function submit(){
   FINAL_CALL_BACK_COUNT = 0;
   clearLoadSuccessContainer("loader_success_container_2");
@@ -131,7 +154,7 @@ function submit(){
     console.log(lineitem.name)
     performTask = function(){
       FINAL_CALL_BACK_COUNT++;
-      finalCallBack(FINAL_CALL_BACK_COUNT, lineitems_in_application.size);
+      finalCallBack(FINAL_CALL_BACK_COUNT, lineitems_in_application.size, 2);
       console.log("success for" + lineitem.name);
     };
     putLineItem(lineitem, performTask);
