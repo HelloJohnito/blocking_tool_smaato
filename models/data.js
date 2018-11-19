@@ -4,6 +4,7 @@
 var ACCESS_TOKEN = "";
 
 var SPX_DATA = {
+  applications: [],
   adspaces: [],
   lineitems: []
 }

@@ -1,4 +1,3 @@
-var APPLICATION_ID = document.getElementById("application_id");
 var SUBMIT_BUTTON = document.getElementById("submit_button").addEventListener("click", submit);
 var CLEAR_ALL = document.getElementById("clear_all_button").addEventListener("click", clearAll);
 var FINAL_CALL_BACK_COUNT;
@@ -6,7 +5,8 @@ var FINAL_CALL_BACK_COUNT;
 
 function clearAll(){
   FINAL_CALL_BACK_COUNT = 0;
-  ErroHandleCheckConnection();
+  ErrorHandleCheckConnection();
+  ErrorHandleMissingApplication();
   handleLoader(3, "loader", "");
   var adspace_ids_in_application = parseDataForAdspace();
   var lineitems_in_application = selectLineItemsWithAdspace(adspace_ids_in_application);
@@ -21,18 +21,6 @@ function clearAll(){
     };
     putLineItem(lineitem, performTask);
   });
-}
-
-
-function ErroHandleCheckConnection(){
-  if(!ACCESS_TOKEN){
-    alert("ERROR: Connect to an account using the client id and client secret.");
-    throw new Error("Connect to an account using the client id and client secret.");
-  }
-  else if(!SPX_DATA["adspaces"] || !SPX_DATA["lineitems"]){
-    alert("ERROR: There are no adspaces and/or line items for this account. If there are, reconnect to the account and try again.");
-    throw new Error("There are no adspaces and/or line items for this account. If there are, reconnecting to the account and try again.");
-  }
 }
 
 
@@ -64,7 +52,7 @@ function insertBlocks(categories, domains, lineitems){
 
 
 function parseDataForAdspace(){
-  var application_id = parseInt(APPLICATION_ID.value);
+  var application_id = parseInt(APPLICATION_ID.innerHTML);
   var adspace;
   var adspace_ids = [];
   for(var i = 0; i < SPX_DATA["adspaces"].length; i++){
@@ -138,7 +126,8 @@ function setCategoryValues(){
 
 function submit(){
   FINAL_CALL_BACK_COUNT = 0;
-  ErroHandleCheckConnection();
+  ErrorHandleCheckConnection();
+  ErrorHandleMissingApplication();
   handleLoader(2, "loader", "");
   var category_values = setCategoryValues();
   var domain_values = setDomainValues();

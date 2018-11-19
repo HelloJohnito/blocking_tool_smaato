@@ -13,11 +13,30 @@ var START_POSITION_LINE_ITEMS = 0;
    var callback = function() {
      if(this.readyState == 4 && this.status == 200) {
        ACCESS_TOKEN = JSON.parse(this.responseText).access_token;
-       performTask(getAllLineItems);
+       performTask(getAllAdspaces);
      }
    }
    requestSoma(request_object, callback);
    return;
+ }
+
+ // APPLICATION
+ function getAllApplications(performTask){
+   var request_object = {
+     "headers": [["Authorization", `Bearer ${ACCESS_TOKEN}`]],
+     "url" : 'https://spx.smaato.com/publisherportal/api/inventory/v1/applications',
+     "params": null,
+     "requestType" : "GET"
+   };
+
+   var callback = function(){
+     if(this.readyState == 4 && this.status == 200){
+       SPX_DATA.applications = JSON.parse(this.responseText);
+       console.log(SPX_DATA.applications);
+       performTask(getAllLineItems);
+     }
+   }
+   requestSoma(request_object, callback);
  }
 
 

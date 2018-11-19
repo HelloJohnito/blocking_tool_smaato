@@ -25,8 +25,11 @@
     </div>
 
     <div class="application_container">
-      <h2 id="h2_auth">Application Id</h2>
-      <input id="application_id" type="text" name="" value="" placeholder="Application Id">
+      <h2 id="h2_auth">Application</h2>
+      <input id="application_name" class="application_input" type="text" name="" value="" placeholder="Application Name">
+      <input id="application_os" class="application_input" type="text" name="" value="" placeholder="Application OS eg. iOS">
+      <button id="application_find_button" type="button" name="button">Find Id</button>
+      <label id="application_id" for=""></label>
     </div>
 
 
@@ -67,6 +70,7 @@
   <script src="../models/data.js"></script>
   <script src="../controllers/soma_api.js"></script>
   <script src="../controllers/auth_initialize.js"></script>
+  <script src="../controllers/search_application_id.js"></script>
   <script src="../controllers/blocking_logic.js"></script>
   <script src="../controllers/submit.js"></script>
   <script src="../main.js"></script>
