@@ -3,6 +3,49 @@ var APPLICATION_OS = document.getElementById("application_os");
 var FIND_BUTTON = document.getElementById("application_find_button").addEventListener("click", findApplicationId);
 var APPLICATION_ID = document.getElementById("application_id");
 
+APPLICATION_NAME.addEventListener("keydown", autocomplete);
+
+function autocomplete(e){
+  console.log(e);
+  switch (e.keyCode) {
+    case 8:
+      popAutoCompleteStack();
+      break;
+    case 38:
+      console.log("up");
+      break;
+    case 40:
+      console.log("down");
+      break;
+    default:
+      var subStack = pushAutoCompleteStack(e.key);
+      AutoCompleteStack.push(subStack);
+      console.log(AutoCompleteStack);
+      break;
+  }
+}
+
+
+function popAutoCompleteStack(){
+  if (AutoCompleteStack.length > 1){
+    AutoCompleteStack.pop();
+  }
+}
+
+
+function pushAutoCompleteStack(inputKey){
+  var subStack = [];
+  var currentPointer = AutoCompleteStack.length - 1;
+  var currentStack = AutoCompleteStack[currentPointer];
+  for(var i = 0; i < currentStack.length; i++){
+    if(currentStack[i][currentPointer] === inputKey){
+      subStack.push(currentStack[i]);
+    }
+  }
+  return subStack;
+}
+
+
 function ErrorHandleMissingApplication(){
   if(!APPLICATION_ID.innerHTML){
     alert("ERROR: Missing application Id");

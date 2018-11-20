@@ -9,6 +9,9 @@ var SPX_DATA = {
   lineitems: []
 }
 
+// var AutoCompleteStack = [];
+var AutoCompleteStack = [["bat", "bed", "best", "cat", "cost","dog"]];
+
 var PARENT_CATEGORIES = [
                          "Arts & Entertainment (IAB1)", "Automotive (IAB2)", "Business (IAB3)", "Careers (IAB4)", "Education (IAB5)",
                          "Family & Parenting (IAB6)", "Health & Fitness (IAB7)", "Food & Drink (IAB8)", "Hobbies & Interests (IAB9)", "Home & Garden (IAB10)",

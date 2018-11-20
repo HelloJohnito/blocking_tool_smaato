@@ -2,6 +2,7 @@ var CLIENT_ID_LABEL = document.getElementById("client_id");
 var CLIENT_SECRET_LABEL = document.getElementById("client_secret");
 var CONNECT_BUTTON = document.getElementById("connect_button").addEventListener("click", submitConnectAccount);
 
+CLIENT_ID_LABEL.focus();
 
 function addElement(parent_id, element_class, innerContent){
   var parent = document.getElementById(parent_id);
@@ -43,6 +44,17 @@ function ErrorHandleCheckInput(){
     alert("ERROR: Input Client Id and Client Secret");
     throw new Error ("Missing client id and client secret.");
   }
+  return;
+}
+
+
+function extractApplicationName(){
+  var subStack = [];
+  for(var i = 0 ; i < SPX_DATA.applications.length; i++){
+    subStack.push(SPX_DATA.applications[i].name);
+  }
+  AutoCompleteStack.push(subStack);
+  console.log("Success");
   return;
 }
 

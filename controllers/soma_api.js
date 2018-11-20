@@ -33,7 +33,7 @@ var START_POSITION_LINE_ITEMS = 0;
      if(this.readyState == 4 && this.status == 200){
        SPX_DATA.applications = JSON.parse(this.responseText);
        console.log(SPX_DATA.applications);
-       performTask(getAllLineItems);
+       performTask(getAllLineItems); 
      }
    }
    requestSoma(request_object, callback);
@@ -52,7 +52,7 @@ function getAllAdspaces(performTask){
     if(this.readyState == 4 && this.status == 200){
       SPX_DATA.adspaces = JSON.parse(this.responseText);
       console.log(SPX_DATA.adspaces);
-      performTask(function(){console.log("success");});
+      performTask(extractApplicationName);
     }
   }
   requestSoma(request_object, callback);
@@ -75,7 +75,8 @@ function getAllLineItems(performTask){
       console.log(SPX_DATA.lineitems);
       if(lineitems_result.length === 1000){
         START_POSITION_LINE_ITEMS += 1000;
-        getAllLineItems(function(){console.log("success");});
+        getAllLineItems(performTask);
+        return;
       }
       else {
         clearLoadSuccessContainer("loader_success_container_1");
