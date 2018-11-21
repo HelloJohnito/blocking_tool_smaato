@@ -13,6 +13,11 @@ CHARSET.push("'");
 CHARSET.push('"');
 CHARSET.push("\\");
 
+var AUTOCOMPLETE_SETTING = {
+  currentKeyIndex : -1,
+  currentAppName: ""
+};
+
 
 var PARENT_CATEGORIES = [
                          "Arts & Entertainment (IAB1)", "Automotive (IAB2)", "Business (IAB3)", "Careers (IAB4)", "Education (IAB5)",
