@@ -1,6 +1,3 @@
-
-// Testing_application_id = 120176118
-
 var ACCESS_TOKEN = "";
 
 var SPX_DATA = {
@@ -10,6 +7,12 @@ var SPX_DATA = {
 }
 
 var AutoCompleteStack = [];
+var CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890`~!@#$%^&*()-=_+[]{}|;:,.<>/?'.split('');
+CHARSET.push(" ");
+CHARSET.push("'");
+CHARSET.push('"');
+CHARSET.push("\\");
+
 
 var PARENT_CATEGORIES = [
                          "Arts & Entertainment (IAB1)", "Automotive (IAB2)", "Business (IAB3)", "Careers (IAB4)", "Education (IAB5)",

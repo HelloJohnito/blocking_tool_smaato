@@ -81,7 +81,6 @@ function getAllLineItems(performTask){
       else {
         clearLoadSuccessContainer("loader_success_container_1");
         addElement("loader_success_container_1", "success_note", "Success");
-        console.log("here")
         performTask();
       }
     }
