@@ -5,8 +5,9 @@ var FINAL_CALL_BACK_COUNT;
 
 function clearAll(){
   FINAL_CALL_BACK_COUNT = 0;
-  ErrorHandleCheckConnection();
-  ErrorHandleMissingApplication();
+  ErrorCheckConnection();
+  ErrorCheckMissingApplicationId();
+
   handleLoader(3, "loader", "");
   var adspace_ids_in_application = parseDataForAdspace();
   var lineitems_in_application = selectLineItemsWithAdspace(adspace_ids_in_application);
@@ -126,8 +127,8 @@ function setCategoryValues(){
 
 function submit(){
   FINAL_CALL_BACK_COUNT = 0;
-  ErrorHandleCheckConnection();
-  ErrorHandleMissingApplication();
+  ErrorCheckConnection();
+  ErrorCheckMissingApplicationId();
   handleLoader(2, "loader", "");
   var category_values = setCategoryValues();
   var domain_values = setDomainValues();

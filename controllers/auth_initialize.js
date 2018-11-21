@@ -50,7 +50,7 @@ function removeElement(element){
 
 
 function submitConnectAccount(){
-  ErrorHandleCheckInput();
+  ErrorCheckMissingClientInput()
   handleLoader(1, "loader", "");
   getAuthToken(CLIENT_ID_LABEL.value, CLIENT_SECRET_LABEL.value, getAllApplications);
 }

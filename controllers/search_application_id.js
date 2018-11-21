@@ -9,6 +9,7 @@ var DROPDOWN_CONTENT = document.querySelector(".dropdown-content");
 APPLICATION_NAME.addEventListener("input", autocomplete);
 
 function autocomplete(e){
+  ErrorCheckConnection()
   if(CHARSET.includes(e.data)) {
     var subStack = pushAutoCompleteStack(e.data);
     AutoCompleteStack.push(subStack);
@@ -90,14 +91,9 @@ function pushAutoCompleteStack(inputKey){
 
 
 function findApplicationId(){
-  ErrorHandleCheckConnection();
+  ErrorCheckConnection();
+  ErrorCheckMissingApplicationInput();
   APPLICATION_ID.innerHTML = "";
-
-  if(!APPLICATION_NAME.value || !APPLICATION_OS.value){
-    // create ERROR
-    alert("ERROR: Missing application inputs");
-    console.log("ERROR: Missing Application Name or OS type");
-  }
 
   var applicationName = APPLICATION_NAME.value.toUpperCase();
   var applicationType = APPLICATION_OS.value.toUpperCase();
@@ -108,8 +104,6 @@ function findApplicationId(){
     }
   }
 
-  // create ERROR
-  alert("ERROR: No Application with the name of " + APPLICATION_NAME.value + " and of type " + APPLICATION_OS.value);
-  console.log("ERROR: No Application with the name of " + APPLICATION_NAME.value + " and mobile type of " + APPLICATION_OS.value);
+  ErrorCheckMissingApplicationId()
   return;
 }
