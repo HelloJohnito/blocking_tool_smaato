@@ -6,17 +6,12 @@ var SPX_DATA = {
   lineitems: []
 }
 
-var AutoCompleteStack = [];
+var AUTOCOMPLETE_APPLICATION_NAMES = [];
 var CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890`~!@#$%^&*()-=_+[]{}|;:,.<>/?'.split('');
 CHARSET.push(" ");
 CHARSET.push("'");
 CHARSET.push('"');
 CHARSET.push("\\");
-
-var AUTOCOMPLETE_SETTING = {
-  currentKeyIndex : -1,
-  currentAppName: ""
-};
 
 
 var PARENT_CATEGORIES = [

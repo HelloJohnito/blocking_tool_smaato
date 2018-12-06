@@ -27,17 +27,6 @@ function clearLoadSuccessContainer(element_id){
 }
 
 
-function extractApplicationName(){
-  var subStack = [];
-  for(var i = 0 ; i < SPX_DATA.applications.length; i++){
-    subStack.push(SPX_DATA.applications[i].name);
-  }
-  AutoCompleteStack.push(subStack);
-  console.log("Success");
-  return;
-}
-
-
 function handleLoader(num, type, innerContent){
   clearLoadSuccessContainer("loader_success_container_" + num.toString());
   addElement("loader_success_container_" + num.toString(), type, innerContent);

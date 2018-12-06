@@ -52,7 +52,7 @@ function getAllAdspaces(performTask){
     if(this.readyState == 4 && this.status == 200){
       SPX_DATA.adspaces = JSON.parse(this.responseText);
       console.log(SPX_DATA.adspaces);
-      performTask(extractApplicationName);
+      performTask();
     }
   }
   requestSoma(request_object, callback);
@@ -75,13 +75,13 @@ function getAllLineItems(performTask){
       console.log(SPX_DATA.lineitems);
       if(lineitems_result.length === 1000){
         START_POSITION_LINE_ITEMS += 1000;
-        getAllLineItems(performTask);
+        getAllLineItems();
         return;
       }
       else {
         clearLoadSuccessContainer("loader_success_container_1");
         addElement("loader_success_container_1", "success_note", "Success");
-        performTask();
+        extractApplicationName();
       }
     }
   }
