@@ -1,7 +1,8 @@
 var BODY = document.getElementById("body");
 BODY.addEventListener("click", function(e){
-  toggleAutoCompleteItemOnDisplay(false);
   AUTOCOMPLETE_SETTING.index = -1;
+  DROPDOWN_CONTENT.scrollTop = 0;
+  toggleAutoCompleteItemOnDisplay(false);
 });
 
 var APPLICATION_NAME = document.getElementById("application_name");
@@ -58,7 +59,7 @@ function moveThroughAutoCompleteNames(e){
       }
       AUTOCOMPLETE_SETTING.index -= 1;
       moveCursor(AUTOCOMPLETE_SETTING.index);
-      console.log(e);
+      DROPDOWN_CONTENT.scrollTop -= 34;
       break;
     case 40:
       // down
@@ -67,15 +68,18 @@ function moveThroughAutoCompleteNames(e){
       }
       AUTOCOMPLETE_SETTING.index += 1;
       moveCursor(AUTOCOMPLETE_SETTING.index);
+      DROPDOWN_CONTENT.scrollTop += 34;
       break;
     case 8:
       // delete
       AUTOCOMPLETE_SETTING.index = -1;
+      DROPDOWN_CONTENT.scrollTop = 0;
       break;
     case 27:
       // esc
-      toggleAutoCompleteItemOnDisplay(false);
       AUTOCOMPLETE_SETTING.index = -1;
+      DROPDOWN_CONTENT.scrollTop = 0;
+      toggleAutoCompleteItemOnDisplay(false);
       break;
     case 13:
       // enter
@@ -85,8 +89,10 @@ function moveThroughAutoCompleteNames(e){
       APPLICATION_NAME.value = DROPDOWN_CONTENT.children[AUTOCOMPLETE_SETTING.index].innerHTML;
       listAutoCompleteNames();
       if(DROPDOWN_CONTENT.children.length === 1){
+        DROPDOWN_CONTENT.scrollTop = 0;
         toggleAutoCompleteItemOnDisplay(false);
       }
+      DROPDOWN_CONTENT.scrollTop = 0;
       AUTOCOMPLETE_SETTING.index = -1;
       break;
     default:
@@ -112,8 +118,9 @@ function createAutoCompleteElements(list){
     dropDownItem.addEventListener("click", function(e){
       e.stopPropagation();
       APPLICATION_NAME.value = this.innerHTML;
-      toggleAutoCompleteItemOnDisplay(false);
       AUTOCOMPLETE_SETTING.index = -1;
+      DROPDOWN_CONTENT.scrollTop = 0;
+      toggleAutoCompleteItemOnDisplay(false);
     });
     DROPDOWN_CONTENT.appendChild(dropDownItem);
   }
