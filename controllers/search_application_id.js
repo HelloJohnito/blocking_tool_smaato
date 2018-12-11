@@ -1,8 +1,6 @@
 var BODY = document.getElementById("body");
 BODY.addEventListener("click", function(e){
-  AUTOCOMPLETE_SETTING.index = -1;
-  DROPDOWN_CONTENT.scrollTop = 0;
-  toggleAutoCompleteItemOnDisplay(false);
+  closeDropDownContent();
 });
 
 var APPLICATION_NAME = document.getElementById("application_name");
@@ -77,9 +75,7 @@ function moveThroughAutoCompleteNames(e){
       break;
     case 27:
       // esc
-      AUTOCOMPLETE_SETTING.index = -1;
-      DROPDOWN_CONTENT.scrollTop = 0;
-      toggleAutoCompleteItemOnDisplay(false);
+      closeDropDownContent();
       break;
     case 13:
       // enter
@@ -89,11 +85,11 @@ function moveThroughAutoCompleteNames(e){
       APPLICATION_NAME.value = DROPDOWN_CONTENT.children[AUTOCOMPLETE_SETTING.index].innerHTML;
       listAutoCompleteNames();
       if(DROPDOWN_CONTENT.children.length === 1){
+        closeDropDownContent();
+      } else {
         DROPDOWN_CONTENT.scrollTop = 0;
-        toggleAutoCompleteItemOnDisplay(false);
+        AUTOCOMPLETE_SETTING.index = -1;
       }
-      DROPDOWN_CONTENT.scrollTop = 0;
-      AUTOCOMPLETE_SETTING.index = -1;
       break;
     default:
       break;
@@ -118,9 +114,7 @@ function createAutoCompleteElements(list){
     dropDownItem.addEventListener("click", function(e){
       e.stopPropagation();
       APPLICATION_NAME.value = this.innerHTML;
-      AUTOCOMPLETE_SETTING.index = -1;
-      DROPDOWN_CONTENT.scrollTop = 0;
-      toggleAutoCompleteItemOnDisplay(false);
+      closeDropDownContent();
     });
     DROPDOWN_CONTENT.appendChild(dropDownItem);
   }
@@ -149,7 +143,25 @@ function toggleAutoCompleteItemOnDisplay(display){
 }
 
 
+function closeDropDownContent(){
+  AUTOCOMPLETE_SETTING.index = -1;
+  DROPDOWN_CONTENT.scrollTop = 0;
+  toggleAutoCompleteItemOnDisplay(false);
+}
+
+
 function findApplicationId(e){
-  e.stopPropagation();
-  console.log("clicked find");
+  ErrorCheckConnection();
+  ErrorCheckMissingApplicationInput();
+  APPLICATION_ID.innerHTML = "";
+  var applicationName = APPLICATION_NAME.value.toUpperCase();
+  var applicationType = APPLICATION_OS.value.toUpperCase();
+  for(var i = 0; i < SPX_DATA.applications.length; i++){
+    if(applicationName === SPX_DATA.applications[i].name.toUpperCase() && applicationType === SPX_DATA.applications[i].type.toUpperCase()){
+      APPLICATION_ID.innerHTML = SPX_DATA.applications[i].id;
+      return;
+    }
+  }
+  ErrorCheckMissingApplicationId();
+  return;
 }
