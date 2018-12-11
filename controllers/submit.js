@@ -3,7 +3,8 @@ var CLEAR_ALL = document.getElementById("clear_all_button").addEventListener("cl
 var FINAL_CALL_BACK_COUNT;
 
 
-function clearAll(){
+function clearAll(e){
+  e.stopPropagation();
   FINAL_CALL_BACK_COUNT = 0;
   ErrorCheckConnection();
   ErrorCheckMissingApplicationId();
@@ -125,7 +126,8 @@ function setCategoryValues(){
 }
 
 
-function submit(){
+function submit(e){
+  e.stopPropagation();
   FINAL_CALL_BACK_COUNT = 0;
   ErrorCheckConnection();
   ErrorCheckMissingApplicationId();

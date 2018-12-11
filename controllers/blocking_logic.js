@@ -3,12 +3,27 @@
 // Category
 var CATEGORY_BOX_LEFT = document.getElementById("category_box_left");
 var CATEGORY_BOX_RIGHT = document.getElementById("category_box_right");
-var ADD_CATEGORY_BUTTON = document.getElementById("add_category_button").addEventListener("click", function(){categoryArrowButtonPressed("add")});
-var SUBTRACT_CATEGORY_BUTTON = document.getElementById("subtract_category_button").addEventListener("click", function(){categoryArrowButtonPressed("subtract")});
+var ADD_CATEGORY_BUTTON = document.getElementById("add_category_button").addEventListener("click", function(e){
+  e.stopPropagation();
+  categoryArrowButtonPressed("add")});
+var SUBTRACT_CATEGORY_BUTTON = document.getElementById("subtract_category_button").addEventListener("click", function(e){
+  e.stopPropagation();
+  categoryArrowButtonPressed("subtract")});
 var RESET_CATEGORY_BUTTON = document.getElementById("reset_category_button").addEventListener("click", resetCategoryBoxes);
+
+CATEGORY_BOX_LEFT.addEventListener("click", function(e){
+  e.stopPropagation();
+});
+
+CATEGORY_BOX_RIGHT.addEventListener("click", function(e){
+  e.stopPropagation();
+});
 
 // Domain
 var DOMAIN_BOX = document.getElementById("domain_box");
+DOMAIN_BOX.addEventListener("click", function(e){
+  e.stopPropagation();
+});
 
 function categoryArrowButtonPressed(operation){
   var selected_item = operation === "add" ? CATEGORY_BOX_LEFT.options[CATEGORY_BOX_LEFT.selectedIndex].text : CATEGORY_BOX_RIGHT.options[CATEGORY_BOX_RIGHT.selectedIndex].text;
@@ -80,7 +95,8 @@ function renderCategoryBoxes(){
 }
 
 
-function resetCategoryBoxes(){
+function resetCategoryBoxes(e){
+  e.stopPropagation();
   destroyCategorySelectItems();
   resetCategoryState();
   renderCategoryBoxes();

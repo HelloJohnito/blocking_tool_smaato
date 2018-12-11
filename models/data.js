@@ -6,13 +6,10 @@ var SPX_DATA = {
   lineitems: []
 }
 
-var AUTOCOMPLETE_APPLICATION_NAMES = [];
-var CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890`~!@#$%^&*()-=_+[]{}|;:,.<>/?'.split('');
-CHARSET.push(" ");
-CHARSET.push("'");
-CHARSET.push('"');
-CHARSET.push("\\");
-
+var AUTOCOMPLETE_SETTING = {
+  names: [],
+  index: -1
+}
 
 var PARENT_CATEGORIES = [
                          "Arts & Entertainment (IAB1)", "Automotive (IAB2)", "Business (IAB3)", "Careers (IAB4)", "Education (IAB5)",

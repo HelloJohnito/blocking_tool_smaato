@@ -3,6 +3,12 @@ var CLIENT_SECRET_LABEL = document.getElementById("client_secret");
 var CONNECT_BUTTON = document.getElementById("connect_button").addEventListener("click", submitConnectAccount);
 
 CLIENT_ID_LABEL.focus();
+CLIENT_ID_LABEL.addEventListener("click", function(e){
+  e.stopPropagation();
+});
+CLIENT_SECRET_LABEL.addEventListener("click", function(e){
+  e.stopPropagation();
+});
 
 function addElement(parent_id, element_class, innerContent){
   var parent = document.getElementById(parent_id);
@@ -38,7 +44,8 @@ function removeElement(element){
 }
 
 
-function submitConnectAccount(){
+function submitConnectAccount(e){
+  e.stopPropagation();
   ErrorCheckMissingClientInput()
   handleLoader(1, "loader", "");
   getAuthToken(CLIENT_ID_LABEL.value, CLIENT_SECRET_LABEL.value, getAllApplications);

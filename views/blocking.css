@@ -88,6 +88,7 @@ button:hover{
   width: 100%;
 }
 
+
 #application_find_button{
   margin-left: 10px;
   margin-top: 20px;
@@ -272,6 +273,10 @@ button:hover{
   max-height: 40px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.dropdown-content-li:hover{
+  cursor: pointer;
 }
 
 .dropdown_display{
