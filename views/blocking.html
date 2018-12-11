@@ -27,12 +27,15 @@
     <div class="application_container">
       <h2 id="h2_auth">Application</h2>
       <div class="dropdown">
-      <input id="application_name" class="application_input" type="text" name="" value="" placeholder="Application Name">
-      <div class="dropdown-content">
+        <input id="application_name" class="application_input" type="text" name="" value="" placeholder="Application Name">
+        <div class="dropdown-content">
+        </div>
       </div>
-    </div>
 
-      <input id="application_os" class="application_input" type="text" name="" value="" placeholder="Application OS eg. iOS">
+      <select id="application_os" name="">
+        <option value="IOS">iOS</option>
+        <option value="ANDROID">Android</option>
+      </select>
       <button id="application_find_button" type="button" name="button">Find Id</button>
       <label id="application_id" for=""></label>
     </div>
