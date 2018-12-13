@@ -34,7 +34,8 @@ function finalCallBack(current_count, lineitem_count, num){
 
 
 function insertBlocks(categories, domains, lineitems){
-  for(var lineitem of lineitems){
+  for(var i = 0; i < lineitems.length; i++){
+    var lineitem = lineitems[i];
     if(categories.length !== 0 && lineitem.smxSettings.categories === null){
       lineitem.smxSettings.categories = [];
     }

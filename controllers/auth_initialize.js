@@ -43,10 +43,16 @@ function removeElement(element){
   element.parentNode.removeChild(element);
 }
 
+function resetSpxData(){
+  SPX_DATA.applcations = [];
+  SPX_DATA.adspaces = [];
+  SPX_DATA.lineitems = [];
+}
 
 function submitConnectAccount(e){
   e.stopPropagation();
-  ErrorCheckMissingClientInput()
+  ErrorCheckMissingClientInput();
   handleLoader(1, "loader", "");
+  resetSpxData();
   getAuthToken(CLIENT_ID_LABEL.value, CLIENT_SECRET_LABEL.value, getAllApplications);
 }

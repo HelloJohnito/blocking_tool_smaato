@@ -40,7 +40,7 @@ function listAutoCompleteNames(){
 
   removeAutoCompleteElements();
   if(currentList.length === 0){
-    toggleAutoCompleteItemOnDisplay(false);
+    closeDropDownContent();
     return;
   }
   toggleAutoCompleteItemOnDisplay(true);
